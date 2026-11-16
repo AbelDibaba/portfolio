@@ -10,12 +10,12 @@ function Word({ children, progress, range }: { children: string; progress: Motio
 
 // Each word lights up as the paragraph scrolls through the viewport.
 export function About() {
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLParagraphElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.85", "end 0.5"] });
   const words = profile.about.join(" ").split(" ");
   return (
-    <div ref={ref}>
-      <p className="text-2xl font-medium leading-snug tracking-tight sm:text-4xl">
+    <div data-block="about">
+      <p ref={ref} className="text-2xl font-medium leading-snug tracking-tight sm:text-4xl">
         {words.map((w, i) => (
           <Word key={i} progress={scrollYProgress} range={[i / words.length, (i + 1) / words.length]}>
             {w}

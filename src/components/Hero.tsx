@@ -3,13 +3,13 @@ import Link from "next/link";
 import { motion, useMotionTemplate, useMotionValue } from "motion/react";
 import { profile } from "@/data/profile";
 import { Magnetic } from "./Magnetic";
+import { HangingName } from "./HangingName";
 import { ease } from "./Reveal";
 
 export function Hero() {
   const mx = useMotionValue(-999);
   const my = useMotionValue(-999);
   const spotlight = useMotionTemplate`radial-gradient(500px circle at ${mx}px ${my}px, color-mix(in oklab, var(--accent) 14%, transparent), transparent 70%)`;
-  const [first, last] = profile.name.split(" ");
 
   return (
     <section
@@ -31,7 +31,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease }}
-          className="mb-8 inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-3 py-1 text-xs text-muted backdrop-blur"
+          className="relative z-20 mb-8 inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-3 py-1 text-xs text-muted backdrop-blur"
         >
           <span className="relative flex size-2">
             <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-75" />
@@ -40,23 +40,10 @@ export function Hero() {
           {profile.experience[0].title} @ {profile.experience[0].company}
         </motion.div>
 
-        <h1 className="text-[clamp(3rem,11vw,8.5rem)] font-semibold leading-[0.9] tracking-tighter">
-          {[first, last].map((word, w) => (
-            <span key={word} className="block overflow-hidden pb-2">
-              {word.split("").map((ch, i) => (
-                <motion.span
-                  key={i}
-                  className={`inline-block ${w === 1 ? "text-gradient" : ""}`}
-                  initial={{ y: "110%" }}
-                  animate={{ y: 0 }}
-                  transition={{ duration: 0.9, delay: 0.1 + w * 0.15 + i * 0.04, ease }}
-                >
-                  {ch}
-                </motion.span>
-              ))}
-            </span>
-          ))}
-        </h1>
+        <HangingName
+          name={profile.name}
+          className="space-y-[0.12em] text-[clamp(3rem,11vw,8.5rem)] font-semibold leading-[0.9] tracking-tighter"
+        />
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}

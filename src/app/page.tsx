@@ -7,11 +7,13 @@ import { Experience } from "@/components/Experience";
 import { Projects } from "@/components/Projects";
 import { Skills } from "@/components/Skills";
 import { Contact } from "@/components/Contact";
+import { Companion } from "@/components/Companion";
 
 export default function Home() {
   return (
     <Providers>
       <Nav />
+      <Companion />
       <main>
         <Hero />
         <Section id="about" label="01 · About" title="A bit about me">

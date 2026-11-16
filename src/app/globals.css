@@ -47,6 +47,7 @@ html[data-theme="light"] {
 }
 body {
   background: var(--bg);
+  overflow-x: clip;
 }
 ::selection {
   background: var(--accent);
@@ -114,4 +115,16 @@ html.lenis body {
   body {
     background: white !important;
   }
+}
+
+/* the project card the robot tour guide is presenting (uses `translate`, so it never fights the haul's transform) */
+[data-block="guide"] > div {
+  transition: translate 0.4s ease;
+}
+[data-block="guide"][data-presenting] > div {
+  translate: 0 -8px;
+}
+[data-block="guide"][data-presenting] button {
+  outline: 2px solid var(--accent);
+  outline-offset: 6px;
 }
