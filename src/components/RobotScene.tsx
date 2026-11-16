@@ -465,7 +465,9 @@ export default function RobotScene({
   const bubble = useRef<HTMLDivElement>(null);
   return (
     <>
+      {/* r3f makes its canvas clickable by default, which swallowed every click on the page */}
       <Canvas
+        style={{ pointerEvents: "none" }}
         orthographic
         camera={{ position: [0, 0, 600], zoom: 1, near: 1, far: 2000 }}
         dpr={mobile ? 1 : [1, 1.5]}
